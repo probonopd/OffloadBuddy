@@ -48,4 +48,6 @@ script:
 after_success:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./deploy_linux.sh -c -p -u; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./deploy_macos.sh -c -p -u; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; bash upload.sh OffloadBuddy*.AppImage*; fi
   - echo '>> End of CI build script!';
